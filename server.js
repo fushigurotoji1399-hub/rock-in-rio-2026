@@ -148,8 +148,10 @@ async function avixPayCreate(p) {
   };
   const credentials = Buffer.from(`${AVIXPAY.key}:`).toString('base64');
   const res = await fetch(`${AVIXPAY.url}/transactions`, { method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization':`Basic ${credentials}` }, body: JSON.stringify(body) });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message || data.error || `AvixPay ${res.status}`);
+  const raw = await res.text();
+  console.log(`AvixPay status=${res.status} body=${raw}`);
+  let data; try { data = JSON.parse(raw); } catch { throw new Error(`AvixPay ${res.status}: ${raw}`); }
+  if (!res.ok) throw new Error(`[${res.status}] ${data.message || data.error || data.errors?.[0]?.message || raw}`);
   return normalizeResponse(data, 'avixpay');
 }
 
