@@ -406,6 +406,10 @@ app.get('/api/admin/orders.csv', adminAuth, (_req, res) => {
   res.send('﻿' + [header,...rows].join('\n'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🎸  Rock in Rio 2026 | http://localhost:${PORT} | Gateway: ${GATEWAY.toUpperCase()}\n`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n🎸  Rock in Rio 2026 | http://localhost:${PORT} | Gateway: ${GATEWAY.toUpperCase()}\n`);
+  });
+}
+
+export default app;
