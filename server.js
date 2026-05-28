@@ -146,7 +146,8 @@ async function avixPayCreate(p) {
     ...(p.payment.method==='card' && { card: { number: p.payment.card.number.replace(/\s/g,''), holderName: p.payment.card.holder_name, expirationMonth: p.payment.card.expiry_month, expirationYear: p.payment.card.expiry_year, cvv: p.payment.card.cvv } }),
     externalRef: `rir26-${Date.now()}`, ...(process.env.WEBHOOK_URL && { postbackUrl: process.env.WEBHOOK_URL }),
   };
-  const res = await fetch(`${AVIXPAY.url}/transactions`, { method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization':`Bearer ${AVIXPAY.key}` }, body: JSON.stringify(body) });
+  const credentials = Buffer.from(`${AVIXPAY.key}:`).toString('base64');
+  const res = await fetch(`${AVIXPAY.url}/transactions`, { method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization':`Basic ${credentials}` }, body: JSON.stringify(body) });
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || data.error || `AvixPay ${res.status}`);
   return normalizeResponse(data, 'avixpay');
