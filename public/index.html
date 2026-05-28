@@ -145,6 +145,7 @@ footer{background:var(--darker);border-top:1px solid rgba(242,237,228,.06);paddi
   <a class="nav-logo" href="#">ROCK<span>IN</span>RIO</a>
   <div style="display:flex;align-items:center;gap:.8rem">
     <a id="navAccount" href="/minha-conta.html" style="color:rgba(242,237,228,.5);font-size:.7rem;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.08em;display:none">👤 <span id="navAccountLabel">Minha conta</span></a>
+    <a href="/cadastro.html" id="navRegister" style="color:rgba(242,237,228,.5);font-size:.7rem;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.08em">Cadastre-se</a>
     <a href="/entrar.html" id="navLogin" style="color:rgba(242,237,228,.5);font-size:.7rem;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.08em">Entrar</a>
     <button class="nav-cta" onclick="coOpen('vip',null)">Comprar Ingresso</button>
   </div>
@@ -159,6 +160,8 @@ footer{background:var(--darker);border-top:1px solid rgba(242,237,228,.06);paddi
     .then(u=>{
       if (!u) return;
       document.getElementById('navLogin').style.display='none';
+      const reg=document.getElementById('navRegister');
+      if(reg) reg.style.display='none';
       const acc=document.getElementById('navAccount');
       acc.style.display='inline';
       document.getElementById('navAccountLabel').textContent=u.name.split(' ')[0];
