@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro — Rock in Rio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E3002B;--dark:#080808;--white:#F2EDE4;--gray:#6B7280;--border:#E5E7EB}
+body{background:var(--dark);min-height:100vh;display:flex;flex-direction:column;font-family:'Inter',sans-serif}
+.nav{background:rgba(5,5,5,.97);border-bottom:1px solid rgba(255,255,255,.06);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#E3002B;text-decoration:none}
+.nav-logo span{color:#F2EDE4}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-link{color:rgba(242,237,228,.5);font-size:.8rem;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:#F2EDE4}
+.nav-link.active{color:#F2EDE4;font-weight:600}
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:3rem 1rem;background:linear-gradient(135deg,rgba(227,0,43,.08) 0%,transparent 50%),var(--dark)}
+.card{background:#fff;width:100%;max-width:560px;border-radius:2px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);margin:auto}
+.card-header{background:var(--red);padding:2rem 2.5rem}
+.card-header-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:#fff;margin-bottom:.2rem}
+.card-header-sub{font-size:.82rem;color:rgba(255,255,255,.75)}
+.card-body{padding:2.5rem}
+.card-title{font-size:1.3rem;font-weight:700;color:#111;margin-bottom:.3rem}
+.card-sub{font-size:.88rem;color:var(--gray);margin-bottom:2rem}
+.card-sub a{color:var(--red);text-decoration:none;font-weight:500}
+.card-sub a:hover{text-decoration:underline}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.8rem;font-weight:600;color:#374151;margin-bottom:.4rem}
+.field input,.field select{width:100%;border:1.5px solid var(--border);border-radius:4px;padding:.75rem 1rem;font-size:.88rem;color:#111;outline:none;transition:border-color .2s;background:#fff;-webkit-appearance:none}
+.field input:focus,.field select:focus{border-color:var(--red)}
+.field input.error,.field select.error{border-color:#DC2626}
+.field-err{font-size:.75rem;color:#DC2626;margin-top:.3rem;display:none}
+.phone-group{display:flex;gap:.5rem}
+.phone-group select{flex:0 0 90px}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);border-bottom:1px solid var(--border);padding-bottom:.5rem;margin:1.5rem 0 1rem}
+.checkbox-row{display:flex;gap:.75rem;align-items:flex-start;margin:1rem 0}
+.checkbox-row input[type=checkbox]{width:18px;height:18px;flex-shrink:0;margin-top:.1rem;accent-color:var(--red)}
+.checkbox-row span{font-size:.8rem;color:#374151;line-height:1.5}
+.btn-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:4px;padding:.85rem;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:1rem;letter-spacing:.03em}
+.btn-submit:hover{background:#c7002a}
+.btn-submit:disabled{background:#ccc;cursor:not-allowed}
+.alert{background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:.75rem 1rem;border-radius:4px;font-size:.82rem;margin-bottom:1rem;display:none}
+.alert.success{background:#F0FDF4;border-color:#BBF7D0;color:#166534}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">ROCK<span>IN</span>RIO</a>
+  <div class="nav-links">
+    <a href="/minha-conta.html" class="nav-link">Meus pedidos</a>
+    <a href="/entrar.html" class="nav-link">Entrar</a>
+    <a href="/cadastro.html" class="nav-link active">Cadastre-se</a>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-logo">ROCK IN RIO 2026</div>
+      <div class="card-header-sub">Crie sua conta e gerencie seus ingressos</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Criar conta</div>
+      <div class="card-sub">Já tem uma conta? <a href="/entrar.html">Entrar agora</a></div>
+
+      <div class="alert" id="alertMsg"></div>
+
+      <form id="registerForm" novalidate>
+
+        <div class="section-label">Dados pessoais</div>
+        <div class="grid2">
+          <div class="field">
+            <label for="firstName">Nome</label>
+            <input id="firstName" type="text" placeholder="João" autocomplete="given-name">
+            <div class="field-err" id="firstNameErr"></div>
+          </div>
+          <div class="field">
+            <label for="lastName">Sobrenome</label>
+            <input id="lastName" type="text" placeholder="Silva" autocomplete="family-name">
+            <div class="field-err" id="lastNameErr"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="country">País de Residência</label>
+          <select id="country">
+            <option value="BR">Brasil</option>
+            <option value="PT">Portugal</option>
+            <option value="AR">Argentina</option>
+            <option value="US">Estados Unidos</option>
+            <option value="other">Outro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Telefone</label>
+          <div class="phone-group">
+            <select id="phoneCode">
+              <option value="+55">+55</option>
+              <option value="+351">+351</option>
+              <option value="+54">+54</option>
+              <option value="+1">+1</option>
+            </select>
+            <input id="phone" type="tel" placeholder="(21) 99999-9999" autocomplete="tel" style="flex:1">
+          </div>
+          <div class="field-err" id="phoneErr"></div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="docType">Tipo de documento</label>
+            <select id="docType">
+              <option value="cpf">CPF</option>
+              <option value="passport">Passaporte</option>
+              <option value="rg">RG</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="document" id="docLabel">CPF</label>
+            <input id="document" type="text" placeholder="000.000.000-00">
+            <div class="field-err" id="documentErr"></div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="birthdate">Data de nascimento</label>
+            <input id="birthdate" type="text" placeholder="DD/MM/AAAA" maxlength="10">
+          </div>
+          <div class="field">
+            <label for="gender">Gênero</label>
+            <select id="gender">
+              <option value="">Selecionar</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+              <option value="NB">Não-binário</option>
+              <option value="ND">Prefiro não informar</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-label">Acesso à conta</div>
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input id="email" type="email" placeholder="seu@email.com" autocomplete="email">
+          <div class="field-err" id="emailErr"></div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+            <div class="field-err" id="passwordErr"></div>
+          </div>
+          <div class="field">
+            <label for="passwordConfirm">Confirmar senha</label>
+            <input id="passwordConfirm" type="password" placeholder="Repita a senha" autocomplete="new-password">
+            <div class="field-err" id="passwordConfirmErr"></div>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="newsletter">
+          <span>Deixe-nos mantê-lo informado sobre o que está por vir – incluindo pré-vendas e ofertas exclusivas – por meios eletrônicos (por exemplo, email, ferramentas de mensageria, redes sociais, etc.).</span>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="terms" required>
+          <span>Li e aceito os <a href="#" style="color:var(--red)">Termos de Uso</a> e a <a href="#" style="color:var(--red)">Política de Privacidade</a>.</span>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Criar conta</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+// Redireciona se já está logado
+const token = localStorage.getItem('rir_token');
+if (token) {
+  fetch('/api/auth/me', { headers:{ 'Authorization':`Bearer ${token}` } })
+    .then(r => r.ok ? location.href='/minha-conta.html' : null).catch(()=>{});
+}
+
+// Update doc label
+document.getElementById('docType').addEventListener('change', function() {
+  document.getElementById('docLabel').textContent = this.options[this.selectedIndex].text;
+  document.getElementById('document').placeholder = this.value==='cpf' ? '000.000.000-00' : this.value==='passport' ? 'AB123456' : '00.000.000-0';
+});
+
+// Birthdate mask
+document.getElementById('birthdate').addEventListener('input', function(){
+  let v = this.value.replace(/\D/g,'').substring(0,8);
+  if(v.length>=5) v = v.substring(0,2)+'/'+v.substring(2,4)+'/'+v.substring(4);
+  else if(v.length>=3) v = v.substring(0,2)+'/'+v.substring(2);
+  this.value = v;
+});
+
+function setErr(id,msg){
+  const el=document.getElementById(id+'Err'),inp=document.getElementById(id);
+  if(el){el.textContent=msg;el.style.display=msg?'block':'none';}
+  if(inp) inp.classList.toggle('error',!!msg);
+}
+
+function showAlert(msg,type='error'){
+  const el=document.getElementById('alertMsg');
+  el.textContent=msg; el.className=`alert ${type}`; el.style.display='block';
+  el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+document.getElementById('registerForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const firstName   = document.getElementById('firstName').value.trim();
+  const lastName    = document.getElementById('lastName').value.trim();
+  const email       = document.getElementById('email').value.trim();
+  const phoneCode   = document.getElementById('phoneCode').value;
+  const phoneNum    = document.getElementById('phone').value.trim();
+  const document_   = document.getElementById('document').value.trim();
+  const password    = document.getElementById('password').value;
+  const pwConfirm   = document.getElementById('passwordConfirm').value;
+  const birthdate   = document.getElementById('birthdate').value;
+  const gender      = document.getElementById('gender').value;
+  const country     = document.getElementById('country').value;
+  const terms       = document.getElementById('terms').checked;
+  let ok = true;
+
+  if(!firstName){setErr('firstName','Nome obrigatório');ok=false;}else setErr('firstName','');
+  if(!lastName){setErr('lastName','Sobrenome obrigatório');ok=false;}else setErr('lastName','');
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setErr('email','Email inválido');ok=false;}else setErr('email','');
+  if(phoneNum.replace(/\D/g,'').length<8){setErr('phone','Telefone inválido');ok=false;}else setErr('phone','');
+  if(password.length<6){setErr('password','Mínimo 6 caracteres');ok=false;}else setErr('password','');
+  if(password!==pwConfirm){setErr('passwordConfirm','Senhas não coincidem');ok=false;}else setErr('passwordConfirm','');
+  if(!terms){showAlert('Você precisa aceitar os termos para continuar.');ok=false;}
+  if(!ok) return;
+
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='Criando conta...';
+
+  try {
+    const res = await fetch('/api/auth/register',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({
+      name: firstName, lastName, email,
+      phone: `${phoneCode}${phoneNum.replace(/\D/g,'')}`,
+      document: document_, password, birthdate, gender, country,
+    })});
+    const data = await res.json();
+    if(!res.ok){ showAlert(data.error||'Erro ao criar conta.'); btn.disabled=false; btn.textContent='Criar conta'; return; }
+    localStorage.setItem('rir_token', data.token);
+    localStorage.setItem('rir_user', JSON.stringify(data.customer));
+    showAlert('Conta criada com sucesso! Redirecionando...','success');
+    setTimeout(()=>{ location.href='/minha-conta.html'; },1200);
+  } catch {
+    showAlert('Erro de conexão. Tente novamente.');
+    btn.disabled=false; btn.textContent='Criar conta';
+  }
+});
+</script>
+</body>
+</html>

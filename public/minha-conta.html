@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Conta — Rock in Rio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E3002B;--dark:#080808;--darker:#050505;--white:#F2EDE4;--gray:#6B7280;--border:#E5E7EB;--surface:#111}
+body{background:var(--darker);min-height:100vh;display:flex;flex-direction:column;font-family:'Inter',sans-serif;color:var(--white)}
+
+/* NAV */
+.nav{background:rgba(5,5,5,.97);border-bottom:1px solid rgba(255,255,255,.06);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:var(--red);text-decoration:none}
+.nav-logo span{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+.nav-user{font-size:.8rem;color:rgba(242,237,228,.6)}
+.nav-user strong{color:var(--white)}
+.btn-logout{background:transparent;border:1px solid rgba(242,237,228,.15);color:rgba(242,237,228,.5);font-size:.72rem;padding:.35rem .9rem;cursor:pointer;transition:all .2s;letter-spacing:.05em}
+.btn-logout:hover{border-color:var(--red);color:var(--red)}
+.nav-link{color:rgba(242,237,228,.5);font-size:.8rem;text-decoration:none}
+.nav-link:hover{color:var(--white)}
+
+/* LAYOUT */
+.page{display:flex;max-width:1100px;margin:0 auto;width:100%;padding:2rem;gap:2rem}
+
+/* SIDEBAR */
+.sidebar{width:220px;flex-shrink:0}
+.sidebar-title{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,237,228,.3);margin-bottom:1rem}
+.sidebar-nav{display:flex;flex-direction:column;gap:.2rem}
+.sidebar-item{display:flex;align-items:center;gap:.7rem;padding:.65rem .9rem;color:rgba(242,237,228,.5);font-size:.85rem;cursor:pointer;border-radius:2px;transition:all .2s;text-decoration:none;border:none;background:transparent;width:100%;text-align:left}
+.sidebar-item:hover{background:rgba(255,255,255,.04);color:var(--white)}
+.sidebar-item.active{background:rgba(227,0,43,.08);color:var(--white);border-left:2px solid var(--red)}
+.sidebar-item .icon{font-size:1rem;width:20px;text-align:center}
+
+/* MAIN */
+.content{flex:1;min-width:0}
+.content-header{margin-bottom:2rem}
+.content-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:.3rem}
+.content-sub{font-size:.85rem;color:rgba(242,237,228,.4)}
+
+/* SECTION TABS */
+.section{display:none}
+.section.active{display:block}
+
+/* ORDERS LIST */
+.empty-state{text-align:center;padding:4rem 2rem}
+.empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.4}
+.empty-text{font-size:.9rem;color:rgba(242,237,228,.4);margin-bottom:1.5rem}
+.btn-buy{background:var(--red);color:#fff;border:none;padding:.75rem 2rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-buy:hover{background:#c7002a}
+
+/* LOOKUP FORM (sem login) */
+.lookup-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:2rem;max-width:480px}
+.lookup-title{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.lookup-sub{font-size:.82rem;color:rgba(242,237,228,.4);margin-bottom:1.5rem}
+.lk-field{margin-bottom:1rem}
+.lk-field label{display:block;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,237,228,.4);margin-bottom:.4rem}
+.lk-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.75rem 1rem;font-size:.88rem;outline:none;transition:border-color .2s;border-radius:2px}
+.lk-input:focus{border-color:var(--red)}
+.btn-lookup{width:100%;background:var(--red);color:#fff;border:none;padding:.8rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.btn-lookup:hover{background:#c7002a}
+.btn-lookup:disabled{background:rgba(227,0,43,.3);cursor:not-allowed}
+.lk-err{color:#f87171;font-size:.75rem;margin-top:.5rem;display:none}
+
+/* ORDER CARD */
+.order-card{border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);margin-bottom:1px;transition:border-color .2s;cursor:pointer}
+.order-card:hover{border-color:rgba(227,0,43,.3)}
+.order-card.expanded{border-color:rgba(227,0,43,.4);background:rgba(227,0,43,.03)}
+.order-header{display:flex;align-items:center;gap:1.5rem;padding:1.2rem 1.5rem}
+.order-code{font-family:'Space Mono',monospace;font-size:.9rem;font-weight:700;color:var(--red);letter-spacing:.08em;flex-shrink:0}
+.order-info{flex:1;min-width:0}
+.order-date{font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-meta{font-size:.75rem;color:rgba(242,237,228,.4);margin-top:.1rem}
+.order-status{flex-shrink:0}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .7rem;border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.badge-paid{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.badge-pending{background:rgba(234,179,8,.1);color:#facc15;border:1px solid rgba(234,179,8,.2)}
+.badge-cancelled{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.order-chevron{color:rgba(242,237,228,.3);font-size:.8rem;transition:transform .3s;flex-shrink:0}
+.order-card.expanded .order-chevron{transform:rotate(180deg)}
+
+/* ORDER DETAIL */
+.order-detail{display:none;border-top:1px solid rgba(255,255,255,.06);padding:1.5rem}
+.order-card.expanded .order-detail{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.detail-section{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.2rem}
+.detail-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,237,228,.3);margin-bottom:.3rem}
+.detail-val{font-size:.9rem;font-weight:600}
+
+/* TICKET VISUAL */
+.ticket{background:linear-gradient(135deg,#0f0f0f,#1a1a1a);border:1px solid rgba(227,0,43,.3);padding:1.5rem;margin-bottom:1.2rem;position:relative;overflow:hidden}
+.ticket::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red)}
+.ticket-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.2rem}
+.ticket-event{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--red)}
+.ticket-year{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:rgba(242,237,228,.3);letter-spacing:.2em}
+.ticket-qr{flex-shrink:0;background:#fff;padding:.5rem;width:90px;height:90px;display:flex;align-items:center;justify-content:center}
+.ticket-qr img{width:80px;height:80px}
+.ticket-row{display:flex;gap:2rem;flex-wrap:wrap}
+.ticket-field{display:flex;flex-direction:column;gap:.2rem}
+.ticket-field-label{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,237,228,.3)}
+.ticket-field-val{font-size:.85rem;font-weight:600}
+.ticket-code-big{font-family:'Space Mono',monospace;font-size:1.2rem;font-weight:700;color:var(--red);letter-spacing:.1em;margin-top:1rem;border-top:1px dashed rgba(255,255,255,.08);padding-top:1rem}
+
+/* LINEUP IN TICKET */
+.lineup-grid{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem}
+.stage-row{display:flex;gap:.8rem;align-items:flex-start;padding:.6rem .8rem;background:rgba(255,255,255,.02)}
+.stage-name{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--red);white-space:nowrap;padding-top:.1rem;min-width:100px}
+.stage-acts{font-size:.8rem;color:rgba(242,237,228,.7);line-height:1.5}
+.headliner-tag{display:inline-block;background:var(--red);color:#fff;font-size:.55rem;font-weight:700;padding:.1rem .4rem;letter-spacing:.08em;text-transform:uppercase;margin-left:.4rem;vertical-align:middle}
+
+/* ACTION BUTTONS */
+.ticket-actions{display:flex;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap}
+.btn-action{flex:1;min-width:120px;background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(242,237,228,.6);padding:.6rem .8rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.btn-action:hover{border-color:var(--red);color:var(--red)}
+
+/* PIX AREA */
+.pix-area{background:rgba(227,0,43,.04);border:1px solid rgba(227,0,43,.15);padding:1.2rem;margin-top:1rem}
+.pix-area-title{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
+.pix-qr-row{display:flex;gap:1.2rem;align-items:flex-start}
+.pix-qr-img{background:#fff;padding:.5rem;width:90px;height:90px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pix-qr-img img{width:80px;height:80px}
+.pix-code-wrap{flex:1}
+.pix-code{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:.6rem .8rem;font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(242,237,228,.5);word-break:break-all;line-height:1.5;max-height:70px;overflow:hidden}
+.btn-copy-pix{background:var(--red);color:#fff;border:none;padding:.5rem 1rem;font-size:.7rem;font-weight:700;cursor:pointer;margin-top:.5rem;transition:background .2s}
+.btn-copy-pix:hover{background:#c7002a}
+
+/* PROFILE SECTION */
+.profile-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);padding:2rem;max-width:500px}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:rgba(227,0,43,.15);border:2px solid rgba(227,0,43,.3);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--red);margin-bottom:1.2rem}
+.profile-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:.2rem}
+.profile-email{font-size:.8rem;color:rgba(242,237,228,.4);margin-bottom:1.5rem}
+.profile-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.profile-key{font-size:.75rem;color:rgba(242,237,228,.4)}
+.profile-val{font-size:.82rem;font-weight:500}
+
+/* LOADING */
+.loading{text-align:center;padding:4rem 2rem;color:rgba(242,237,228,.3)}
+.spinner{width:36px;height:36px;border:3px solid rgba(227,0,43,.15);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:768px){
+  .page{flex-direction:column;padding:1rem;gap:1rem}
+  .sidebar{width:100%}
+  .sidebar-nav{flex-direction:row;flex-wrap:wrap}
+  .sidebar-item{flex:1;justify-content:center}
+  .detail-grid{grid-template-columns:1fr}
+  .ticket-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">ROCK<span>IN</span>RIO</a>
+  <div class="nav-right">
+    <span class="nav-user" id="navUser"></span>
+    <button class="btn-logout" id="btnLogout" style="display:none" onclick="logout()">Sair</button>
+    <a href="/entrar.html" class="nav-link" id="navLogin" style="display:none">Entrar</a>
+    <a href="/cadastro.html" class="nav-link" id="navRegister" style="display:none">Cadastrar</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">// Menu</div>
+    <nav class="sidebar-nav">
+      <button class="sidebar-item active" data-section="orders" onclick="showSection('orders')">
+        <span class="icon">🎟️</span> Meus pedidos
+      </button>
+      <button class="sidebar-item" data-section="lookup" onclick="showSection('lookup')">
+        <span class="icon">🔍</span> Buscar ingresso
+      </button>
+      <button class="sidebar-item" data-section="profile" onclick="showSection('profile')" id="profileTab" style="display:none">
+        <span class="icon">👤</span> Meu perfil
+      </button>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ORDERS SECTION -->
+    <div class="section active" id="sectionOrders">
+      <div class="content-header">
+        <div class="content-title">Meus Pedidos</div>
+        <div class="content-sub">Todos os seus ingressos para o Rock in Rio 2026</div>
+      </div>
+      <div id="ordersContent">
+        <div class="loading"><div class="spinner"></div>Carregando...</div>
+      </div>
+    </div>
+
+    <!-- LOOKUP SECTION -->
+    <div class="section" id="sectionLookup">
+      <div class="content-header">
+        <div class="content-title">Buscar Ingresso</div>
+        <div class="content-sub">Encontre seu ingresso usando o código recebido após a compra</div>
+      </div>
+      <div class="lookup-card">
+        <div class="lookup-title">Consultar ingresso</div>
+        <div class="lookup-sub">Informe o email usado na compra e o código único do seu ingresso</div>
+        <div class="lk-field">
+          <label for="lkEmail">E-Mail da compra</label>
+          <input id="lkEmail" class="lk-input" type="email" placeholder="seu@email.com">
+        </div>
+        <div class="lk-field">
+          <label for="lkCode">Código do ingresso</label>
+          <input id="lkCode" class="lk-input" type="text" placeholder="RIR26-XXXXXX" maxlength="12" style="text-transform:uppercase;letter-spacing:.1em">
+        </div>
+        <div class="lk-err" id="lkErr"></div>
+        <button class="btn-lookup" id="btnLookup" onclick="lookupOrder()">Buscar ingresso</button>
+      </div>
+      <div id="lookupResult" style="margin-top:1.5rem"></div>
+    </div>
+
+    <!-- PROFILE SECTION -->
+    <div class="section" id="sectionProfile">
+      <div class="content-header">
+        <div class="content-title">Meu Perfil</div>
+        <div class="content-sub">Seus dados cadastrados</div>
+      </div>
+      <div id="profileContent">
+        <div class="loading"><div class="spinner"></div>Carregando...</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const API = { headers: () => ({ 'Content-Type':'application/json', 'Authorization':`Bearer ${localStorage.getItem('rir_token')||''}` }) };
+let currentUser = null;
+let isLoggedIn  = false;
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+async function init() {
+  const token = localStorage.getItem('rir_token');
+  if (token) {
+    try {
+      const res = await fetch('/api/auth/me', { headers: API.headers() });
+      if (res.ok) {
+        currentUser = await res.json();
+        isLoggedIn = true;
+        document.getElementById('navUser').innerHTML = `Olá, <strong>${currentUser.name.split(' ')[0]}</strong>`;
+        document.getElementById('btnLogout').style.display = 'block';
+        document.getElementById('profileTab').style.display = 'flex';
+        loadOrders();
+        return;
+      }
+    } catch {}
+    localStorage.removeItem('rir_token');
+  }
+  // Não logado
+  document.getElementById('navLogin').style.display = 'block';
+  document.getElementById('navRegister').style.display = 'block';
+  showGuestOrders();
+}
+
+// ─── NAVEGAÇÃO ────────────────────────────────────────────────────────────────
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+  document.getElementById(`section${name.charAt(0).toUpperCase()+name.slice(1)}`).classList.add('active');
+  document.querySelector(`[data-section="${name}"]`)?.classList.add('active');
+  if (name==='profile' && isLoggedIn) loadProfile();
+}
+
+// ─── LOGOUT ───────────────────────────────────────────────────────────────────
+async function logout() {
+  await fetch('/api/auth/logout', { method:'POST', headers: API.headers() }).catch(()=>{});
+  localStorage.removeItem('rir_token');
+  localStorage.removeItem('rir_user');
+  location.href = '/entrar.html';
+}
+
+// ─── ORDERS (autenticado) ─────────────────────────────────────────────────────
+async function loadOrders() {
+  const el = document.getElementById('ordersContent');
+  el.innerHTML = '<div class="loading"><div class="spinner"></div>Carregando pedidos...</div>';
+  try {
+    const res = await fetch('/api/customer/orders', { headers: API.headers() });
+    if (!res.ok) { showGuestOrders(); return; }
+    const orders = await res.json();
+    renderOrders(orders, el);
+  } catch { el.innerHTML = '<div class="loading">Erro ao carregar pedidos.</div>'; }
+}
+
+function showGuestOrders() {
+  const el = document.getElementById('ordersContent');
+  el.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-icon">🎟️</div>
+      <div class="empty-text">Faça login para ver seus pedidos, ou consulte um ingresso pelo código.</div>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="/entrar.html" class="btn-buy">Entrar na conta</a>
+        <button class="btn-buy" style="background:transparent;border:1px solid rgba(227,0,43,.4);color:var(--red)" onclick="showSection('lookup')">Buscar por código</button>
+      </div>
+    </div>`;
+}
+
+function renderOrders(orders, container) {
+  if (!orders.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🎟️</div>
+        <div class="empty-text">Você ainda não tem ingressos.<br>Garanta o seu agora!</div>
+        <a href="/" class="btn-buy">Ver ingressos</a>
+      </div>`;
+    return;
+  }
+  container.innerHTML = orders.map(o => orderCardHTML(o)).join('');
+}
+
+function orderCardHTML(order) {
+  const statusBadge = {
+    paid:      '<span class="badge badge-paid">✓ Confirmado</span>',
+    pending:   '<span class="badge badge-pending">⏳ Aguardando pagamento</span>',
+    cancelled: '<span class="badge badge-cancelled">✕ Cancelado</span>',
+  }[order.status] || `<span class="badge badge-pending">${order.status}</span>`;
+
+  const lineup = order.lineup;
+  const headliner = lineup?.headliner || '';
+
+  return `
+  <div class="order-card" id="order-${order.code}" onclick="toggleOrder('${order.code}')">
+    <div class="order-header">
+      <div class="order-code">${order.code}</div>
+      <div class="order-info">
+        <div class="order-date">${order.showDate}${headliner ? ` · ${headliner}` : ''}</div>
+        <div class="order-meta">${order.ticketLabel} × ${order.quantity} · R$${(order.amount/100).toFixed(2)} · ${new Date(order.createdAt).toLocaleDateString('pt-BR')}</div>
+      </div>
+      <div class="order-status">${statusBadge}</div>
+      <div class="order-chevron">▼</div>
+    </div>
+    <div class="order-detail">
+      ${ticketDetailHTML(order)}
+    </div>
+  </div>`;
+}
+
+function ticketDetailHTML(order) {
+  const lineup = order.lineup;
+  const qrData = encodeURIComponent(order.code);
+
+  const lineupHTML = lineup ? `
+    <div class="lineup-grid">
+      ${Object.entries(lineup.stages).map(([stage, acts]) => `
+        <div class="stage-row">
+          <div class="stage-name">${stage}</div>
+          <div class="stage-acts">${acts.map((a,i) => `${a}${i===0?`<span class="headliner-tag">headliner</span>`:''}`).join(' · ')}</div>
+        </div>
+      `).join('')}
+    </div>` : '';
+
+  const pixHTML = (order.status==='pending' && order.paymentMethod==='pix' && order.pixCode) ? `
+    <div class="pix-area">
+      <div class="pix-area-title">⚡ Pagamento Pix pendente</div>
+      <div class="pix-qr-row">
+        <div class="pix-qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(order.pixCode)}&size=80x80&margin=4" alt="QR Pix"></div>
+        <div class="pix-code-wrap">
+          <div class="pix-code">${order.pixCode}</div>
+          <button class="btn-copy-pix" onclick="copyText('${order.code}-pix','${order.pixCode}',this)">Copiar código Pix</button>
+        </div>
+      </div>
+    </div>` : '';
+
+  return `
+    <div class="ticket">
+      <div class="ticket-top">
+        <div>
+          <div class="ticket-event">Rock in Rio</div>
+          <div class="ticket-year">2 0 2 6</div>
+        </div>
+        <div class="ticket-qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=${qrData}&size=80x80&margin=4" alt="QR ingresso">
+        </div>
+      </div>
+      <div class="ticket-row">
+        <div class="ticket-field">
+          <div class="ticket-field-label">Data</div>
+          <div class="ticket-field-val">${order.showDate}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-field-label">Tipo</div>
+          <div class="ticket-field-val">${order.ticketLabel}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-field-label">Qtd</div>
+          <div class="ticket-field-val">${order.quantity}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-field-label">Valor</div>
+          <div class="ticket-field-val">R$${(order.amount/100).toFixed(2)}</div>
+        </div>
+      </div>
+      ${lineup ? `<div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,237,228,.3)">Programação do dia</div>${lineupHTML}` : ''}
+      <div class="ticket-code-big">${order.code}</div>
+    </div>
+    ${pixHTML}
+    <div class="ticket-actions">
+      <button class="btn-action" onclick="copyCode('${order.code}',this)">📋 Copiar código</button>
+      <button class="btn-action" onclick="printTicket('${order.code}')">🖨️ Imprimir</button>
+      <button class="btn-action" onclick="shareTicket('${order.code}','${order.showDate}')">📤 Compartilhar</button>
+    </div>`;
+}
+
+function toggleOrder(code) {
+  const el = document.getElementById(`order-${code}`);
+  el.classList.toggle('expanded');
+}
+
+// ─── LOOKUP (público) ─────────────────────────────────────────────────────────
+async function lookupOrder() {
+  const email = document.getElementById('lkEmail').value.trim();
+  const code  = document.getElementById('lkCode').value.trim().toUpperCase();
+  const errEl = document.getElementById('lkErr');
+  errEl.style.display = 'none';
+  if (!email || !code) { errEl.textContent='Preencha email e código.'; errEl.style.display='block'; return; }
+
+  const btn = document.getElementById('btnLookup');
+  btn.disabled=true; btn.textContent='Buscando...';
+
+  try {
+    const res = await fetch('/api/orders/lookup', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email,code}) });
+    const data = await res.json();
+    if (!res.ok) { errEl.textContent=data.error||'Não encontrado.'; errEl.style.display='block'; btn.disabled=false; btn.textContent='Buscar ingresso'; return; }
+    const resultEl = document.getElementById('lookupResult');
+    resultEl.innerHTML = `
+      <div style="margin-bottom:.5rem;font-size:.8rem;color:rgba(242,237,228,.4)">Ingresso encontrado:</div>
+      ${orderCardHTML(data)}`;
+    // Auto-expand
+    setTimeout(()=>{
+      const el=document.getElementById(`order-${data.code}`);
+      if(el) el.classList.add('expanded');
+    }, 100);
+  } catch { errEl.textContent='Erro de conexão.'; errEl.style.display='block'; }
+  btn.disabled=false; btn.textContent='Buscar ingresso';
+}
+
+// Auto-format code input
+document.getElementById('lkCode').addEventListener('input', function(){
+  this.value = this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'');
+});
+
+// ─── PROFILE ─────────────────────────────────────────────────────────────────
+async function loadProfile() {
+  const el = document.getElementById('profileContent');
+  if (!isLoggedIn) { el.innerHTML='<div class="empty-state"><div class="empty-text">Faça login para ver seu perfil.</div></div>'; return; }
+  const c = currentUser;
+  el.innerHTML = `
+    <div class="profile-card">
+      <div class="profile-avatar">${c.name.charAt(0).toUpperCase()}</div>
+      <div class="profile-name">${c.name}</div>
+      <div class="profile-email">${c.email}</div>
+      <div class="profile-row"><span class="profile-key">Email</span><span class="profile-val">${c.email}</span></div>
+      <div class="profile-row"><span class="profile-key">Telefone</span><span class="profile-val">${c.phone||'—'}</span></div>
+      <div class="profile-row"><span class="profile-key">Documento</span><span class="profile-val">${c.document||'—'}</span></div>
+      <div class="profile-row"><span class="profile-key">Nascimento</span><span class="profile-val">${c.birthdate||'—'}</span></div>
+      <div class="profile-row"><span class="profile-key">Membro desde</span><span class="profile-val">${new Date(c.createdAt).toLocaleDateString('pt-BR')}</span></div>
+    </div>`;
+}
+
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
+function copyCode(code, btn) {
+  navigator.clipboard.writeText(code).then(()=>{
+    btn.textContent='✓ Copiado!';
+    setTimeout(()=>btn.textContent='📋 Copiar código',2000);
+  });
+}
+
+function copyText(id, text, btn) {
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓ Copiado!';
+    setTimeout(()=>btn.textContent='Copiar código Pix',2000);
+  });
+}
+
+function printTicket(code) {
+  window.print();
+}
+
+function shareTicket(code, date) {
+  if (navigator.share) {
+    navigator.share({ title:'Rock in Rio 2026', text:`Meu ingresso para ${date}. Código: ${code}`, url: location.href });
+  } else {
+    navigator.clipboard.writeText(code).then(()=>alert(`Código copiado: ${code}`));
+  }
+}
+
+// ─── RUN ─────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

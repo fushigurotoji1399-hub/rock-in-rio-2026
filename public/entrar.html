@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — Rock in Rio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E3002B;--dark:#080808;--white:#F2EDE4;--gray:#6B7280;--border:#E5E7EB;--bg:#F9FAFB}
+body{background:var(--dark);min-height:100vh;display:flex;flex-direction:column;font-family:'Inter',sans-serif}
+
+/* NAV */
+.nav{background:rgba(5,5,5,.97);border-bottom:1px solid rgba(255,255,255,.06);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#E3002B;text-decoration:none}
+.nav-logo span{color:#F2EDE4}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-link{color:rgba(242,237,228,.5);font-size:.8rem;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:#F2EDE4}
+.nav-link.active{color:#F2EDE4;font-weight:600}
+
+/* MAIN */
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;background:linear-gradient(135deg,rgba(227,0,43,.08) 0%,transparent 50%),var(--dark)}
+
+/* CARD */
+.card{background:#fff;width:100%;max-width:480px;border-radius:2px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.card-header{background:var(--red);padding:2rem 2.5rem}
+.card-header-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:#fff;margin-bottom:.2rem}
+.card-header-sub{font-size:.82rem;color:rgba(255,255,255,.75)}
+.card-body{padding:2.5rem}
+.card-title{font-size:1.3rem;font-weight:700;color:#111;margin-bottom:.3rem}
+.card-sub{font-size:.88rem;color:var(--gray);margin-bottom:2rem}
+.card-sub a{color:var(--red);text-decoration:none;font-weight:500}
+.card-sub a:hover{text-decoration:underline}
+
+/* FORM */
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.8rem;font-weight:600;color:#374151;margin-bottom:.4rem}
+.field input{width:100%;border:1.5px solid var(--border);border-radius:4px;padding:.75rem 1rem;font-size:.9rem;color:#111;outline:none;transition:border-color .2s;background:#fff}
+.field input:focus{border-color:var(--red)}
+.field input.error{border-color:#DC2626}
+.field-err{font-size:.75rem;color:#DC2626;margin-top:.3rem;display:none}
+.forgot{display:block;text-align:right;font-size:.78rem;color:var(--gray);text-decoration:none;margin-top:.3rem}
+.forgot:hover{color:var(--red)}
+.btn-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:4px;padding:.85rem;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:1.5rem;letter-spacing:.03em}
+.btn-submit:hover{background:#c7002a}
+.btn-submit:disabled{background:#ccc;cursor:not-allowed}
+.divider{display:flex;align-items:center;gap:.8rem;margin:1.4rem 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-size:.75rem;color:var(--gray)}
+.btn-guest{width:100%;background:transparent;color:#374151;border:1.5px solid var(--border);border-radius:4px;padding:.75rem;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;display:block}
+.btn-guest:hover{border-color:#374151;background:#F9FAFB}
+
+/* ALERT */
+.alert{background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:.75rem 1rem;border-radius:4px;font-size:.82rem;margin-bottom:1rem;display:none}
+.alert.success{background:#F0FDF4;border-color:#BBF7D0;color:#166534}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">ROCK<span>IN</span>RIO</a>
+  <div class="nav-links">
+    <a href="/minha-conta.html" class="nav-link">Meus pedidos</a>
+    <a href="/entrar.html" class="nav-link active">Entrar</a>
+    <a href="/cadastro.html" class="nav-link">Cadastre-se</a>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-logo">ROCK IN RIO 2026</div>
+      <div class="card-header-sub">Cidade do Rock · Parque Olímpico · Rio de Janeiro</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Acesse a sua conta</div>
+      <div class="card-sub">Não tem uma conta? <a href="/cadastro.html">Cadastre-se agora</a></div>
+
+      <div class="alert" id="alertMsg"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input id="email" type="email" placeholder="seu@email.com" autocomplete="email">
+          <div class="field-err" id="emailErr"></div>
+        </div>
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password">
+          <div class="field-err" id="passwordErr"></div>
+          <a href="#" class="forgot">Esqueceu sua senha?</a>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Entrar</button>
+      </form>
+
+      <div class="divider"><span>ou</span></div>
+      <a href="/minha-conta.html" class="btn-guest">Consultar ingresso por código</a>
+    </div>
+  </div>
+</main>
+
+<script>
+// Redireciona se já está logado
+const token = localStorage.getItem('rir_token');
+if (token) {
+  fetch('/api/auth/me', { headers: { 'Authorization': `Bearer ${token}` } })
+    .then(r => r.ok ? location.href = '/minha-conta.html' : null)
+    .catch(() => {});
+}
+
+function setErr(id, msg) {
+  const el = document.getElementById(id+'Err'), inp = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+  if (inp) inp.classList.toggle('error', !!msg);
+}
+
+function showAlert(msg, type='error') {
+  const el = document.getElementById('alertMsg');
+  el.textContent = msg;
+  el.className = `alert ${type}`;
+  el.style.display = 'block';
+}
+
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  let ok = true;
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('email','Email inválido'); ok=false; } else setErr('email','');
+  if (password.length < 6) { setErr('password','Mínimo 6 caracteres'); ok=false; } else setErr('password','');
+  if (!ok) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Entrando...';
+
+  try {
+    const res  = await fetch('/api/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
+    const data = await res.json();
+    if (!res.ok) { showAlert(data.error || 'Erro ao entrar.'); btn.disabled=false; btn.textContent='Entrar'; return; }
+    localStorage.setItem('rir_token', data.token);
+    localStorage.setItem('rir_user', JSON.stringify(data.customer));
+    const next = new URLSearchParams(location.search).get('next') || '/minha-conta.html';
+    location.href = next;
+  } catch {
+    showAlert('Erro de conexão. Tente novamente.');
+    btn.disabled=false; btn.textContent='Entrar';
+  }
+});
+</script>
+</body>
+</html>

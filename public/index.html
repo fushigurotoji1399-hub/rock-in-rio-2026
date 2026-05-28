@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock in Rio 2026 — Ingressos Oficiais</title>
+<meta name="description" content="Garanta seu ingresso para o Rock in Rio 2026. 7 dias de festival na Cidade do Rock, Rio de Janeiro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A04C;
+  --gold-light:#E8C96A;
+  --red:#E3002B;
+  --dark:#080808;
+  --darker:#050505;
+  --white:#F2EDE4;
+  --gray:rgba(242,237,228,.5);
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;width:100%;z-index:100;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(5,5,5,.95),transparent);backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.12em;color:var(--gold);text-decoration:none}
+.nav-logo span{color:var(--red)}
+.nav-cta{background:var(--red);color:#fff;border:none;padding:.55rem 1.4rem;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:#ff1a3e}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 60% 50%,rgba(227,0,43,.18) 0%,transparent 60%),
+  radial-gradient(ellipse at 20% 80%,rgba(201,160,76,.12) 0%,transparent 50%),
+  linear-gradient(180deg,rgba(5,5,5,.3) 0%,rgba(5,5,5,.7) 60%,var(--darker) 100%),
+  url('https://cdn.getcrowder.com/images/cfee5fae-cfc7-4c3e-b90a-719323f46c96-rirlandingfatias1.gif') center/cover no-repeat;
+}
+.hero-content{position:relative;z-index:2;text-align:center;padding:8rem 2rem 4rem;max-width:900px;width:100%}
+.hero-badge{display:inline-block;background:var(--red);color:#fff;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.35rem 1rem;margin-bottom:1.5rem}
+.hero-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);line-height:.9;letter-spacing:.04em;background:linear-gradient(135deg,#E8C96A 0%,#C9A04C 40%,#A0782A 70%,#E8C96A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.hero-logo span{color:var(--red);-webkit-text-fill-color:var(--red)}
+.hero-year{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,3rem);letter-spacing:.3em;color:var(--gray);margin-bottom:1.5rem}
+.hero-tagline{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:.6rem}
+.hero-dates-preview{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.1rem,3vw,1.8rem);letter-spacing:.1em;color:var(--white);margin-bottom:.4rem}
+.hero-city{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.15em;color:var(--red);text-transform:uppercase;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#080808;border:none;padding:1rem 2.5rem;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(242,237,228,.3);padding:1rem 2.5rem;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.15em;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.5}
+.scroll-ind span{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase}
+.scroll-arr{width:1px;height:40px;background:linear-gradient(to bottom,var(--white),transparent);animation:scrolldown 1.5s infinite}
+@keyframes scrolldown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── STRIP ─── */
+.strip{background:var(--red);padding:.7rem 0;overflow:hidden}
+.strip-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 20s linear infinite}
+.strip-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.15em;color:#fff;flex-shrink:0}
+.strip-sep{color:rgba(255,255,255,.4)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECTION ─── */
+.section{padding:5rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.s-eyebrow{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.04em;margin-bottom:1rem}
+.s-sub{font-size:.9rem;color:var(--gray);line-height:1.8;max-width:600px}
+
+/* ─── INFO GRID ─── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(242,237,228,.06);margin-top:3rem}
+.info-card{background:var(--dark);padding:2rem;position:relative;overflow:hidden}
+.info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)}
+.info-icon{font-size:2rem;margin-bottom:.8rem}
+.info-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.info-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.05em;color:var(--white)}
+
+/* ─── DATES ─── */
+.dates-section{background:var(--darker);padding:5rem 2rem}
+.dates-grid{display:grid;gap:1px;background:rgba(242,237,228,.06);margin-top:2.5rem}
+.date-row{background:var(--dark);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:1.4rem 2rem;transition:background .2s}
+.date-row:hover{background:rgba(227,0,43,.04)}
+.date-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--red);line-height:1;width:60px;text-align:center}
+.date-info{flex:1}
+.date-month{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.1rem}
+.date-weekday{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em}
+.date-local{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--gray)}
+.date-btn{background:var(--gold);color:#080808;border:none;padding:.65rem 1.6rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;cursor:pointer;white-space:nowrap;transition:all .2s}
+.date-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ─── PRICE ─── */
+.price-section{padding:5rem 2rem}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
+.price-card{border:1px solid rgba(242,237,228,.08);padding:2.5rem;position:relative;transition:border-color .3s}
+.price-card:hover{border-color:rgba(201,160,76,.3)}
+.price-card.featured{border-color:var(--gold);background:rgba(201,160,76,.04)}
+.price-card.featured::before{content:'MAIS POPULAR';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:#080808;font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.15em;padding:.3rem .9rem;white-space:nowrap}
+.price-type{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.price-val{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--white);line-height:1;margin-bottom:.2rem}
+.price-period{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--gray);margin-bottom:1.5rem}
+.price-features{list-style:none;margin-bottom:2rem}
+.price-features li{font-size:.85rem;color:var(--gray);padding:.4rem 0;border-bottom:1px solid rgba(242,237,228,.05);display:flex;gap:.7rem;align-items:flex-start}
+.price-features li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+.btn-buy{width:100%;background:var(--red);color:#fff;border:none;padding:.9rem;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:background .2s}
+.btn-buy:hover{background:#ff1a3e}
+.price-card.featured .btn-buy{background:var(--gold);color:#080808}
+.price-card.featured .btn-buy:hover{background:var(--gold-light)}
+
+/* ─── STICKY BAR ─── */
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(5,5,5,.97);border-top:1px solid rgba(242,237,228,.08);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;backdrop-filter:blur(12px);transform:translateY(100%);transition:transform .4s}
+.sticky.visible{transform:translateY(0)}
+.sticky-info{display:flex;flex-direction:column;gap:.2rem}
+.sticky-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em}
+.sticky-date{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;color:var(--gray)}
+.sticky-cta{background:var(--gold);color:#080808;border:none;padding:.7rem 1.8rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;cursor:pointer;transition:background .2s;white-space:nowrap}
+.sticky-cta:hover{background:var(--gold-light)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--darker);border-top:1px solid rgba(242,237,228,.06);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.12em;color:var(--gold);margin-bottom:.5rem}
+.footer-logo span{color:var(--red)}
+.footer-info{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--gray);letter-spacing:.1em;line-height:2}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .date-row{grid-template-columns:auto 1fr;gap:1rem}
+  .date-btn{grid-column:1/-1}
+  .date-num{font-size:2.2rem;width:45px}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-outline{width:100%;max-width:300px;justify-content:center}
+  .sticky{flex-direction:column;gap:.5rem}
+  .sticky-cta{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#">ROCK<span>IN</span>RIO</a>
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <a id="navAccount" href="/minha-conta.html" style="color:rgba(242,237,228,.5);font-size:.7rem;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.08em;display:none">👤 <span id="navAccountLabel">Minha conta</span></a>
+    <a href="/entrar.html" id="navLogin" style="color:rgba(242,237,228,.5);font-size:.7rem;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.08em">Entrar</a>
+    <button class="nav-cta" onclick="coOpen('vip',null)">Comprar Ingresso</button>
+  </div>
+</nav>
+<script>
+// Atualiza nav se logado
+(function(){
+  const token = localStorage.getItem('rir_token');
+  if (!token) return;
+  fetch('/api/auth/me',{headers:{'Authorization':'Bearer '+token}})
+    .then(r=>r.ok?r.json():null)
+    .then(u=>{
+      if (!u) return;
+      document.getElementById('navLogin').style.display='none';
+      const acc=document.getElementById('navAccount');
+      acc.style.display='inline';
+      document.getElementById('navAccountLabel').textContent=u.name.split(' ')[0];
+    }).catch(()=>{});
+})();
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎸 Cidade do Rock — Rio de Janeiro</div>
+    <div class="hero-logo">ROCK<br>IN<span>RIO</span></div>
+    <div class="hero-year">2 0 2 6</div>
+    <div class="hero-tagline">O maior festival do mundo está de volta</div>
+    <div class="hero-dates-preview">4, 5, 6, 7 · 11, 12, 13 de Setembro</div>
+    <div class="hero-city">📍 Parque Olímpico — Rio de Janeiro, Brasil</div>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="coOpen('vip',null)">🎟️ Garantir Ingresso</button>
+      <button class="btn-outline" onclick="document.getElementById('datas').scrollIntoView({behavior:'smooth'})">Ver Datas</button>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-arr"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">ROCK IN RIO 2026</span><span class="strip-sep">★</span>
+    <span class="strip-item">CIDADE DO ROCK</span><span class="strip-sep">★</span>
+    <span class="strip-item">7 DIAS DE FESTIVAL</span><span class="strip-sep">★</span>
+    <span class="strip-item">PARQUE OLÍMPICO</span><span class="strip-sep">★</span>
+    <span class="strip-item">RIO DE JANEIRO</span><span class="strip-sep">★</span>
+    <span class="strip-item">SETEMBRO 2026</span><span class="strip-sep">★</span>
+    <!-- duplicado para loop contínuo -->
+    <span class="strip-item">ROCK IN RIO 2026</span><span class="strip-sep">★</span>
+    <span class="strip-item">CIDADE DO ROCK</span><span class="strip-sep">★</span>
+    <span class="strip-item">7 DIAS DE FESTIVAL</span><span class="strip-sep">★</span>
+    <span class="strip-item">PARQUE OLÍMPICO</span><span class="strip-sep">★</span>
+    <span class="strip-item">RIO DE JANEIRO</span><span class="strip-sep">★</span>
+    <span class="strip-item">SETEMBRO 2026</span><span class="strip-sep">★</span>
+  </div>
+</div>
+
+<!-- INFO -->
+<section class="section">
+  <div class="section-inner">
+    <div class="s-eyebrow">// O Evento</div>
+    <div class="s-title">Maior Festival do Mundo</div>
+    <div class="s-sub">O Rock in Rio volta ao Rio de Janeiro em 2026 com 7 dias de shows incríveis na Cidade do Rock. A experiência que reúne música, cultura e emoção como nenhum outro evento no planeta.</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">📅</div>
+        <div class="info-label">Datas</div>
+        <div class="info-val">7 DIAS</div>
+        <div style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Set 4–7 e 11–13</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div class="info-label">Local</div>
+        <div class="info-val">PARQUE OLÍMPICO</div>
+        <div style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Rio de Janeiro, RJ</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎸</div>
+        <div class="info-label">Palcos</div>
+        <div class="info-val">5 PALCOS</div>
+        <div style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Palco Mundo, Sunset e mais</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎟️</div>
+        <div class="info-label">Ingressos</div>
+        <div class="info-val">A PARTIR</div>
+        <div style="font-size:.78rem;color:var(--gold);margin-top:.3rem;font-weight:700">DE R$ 435</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATES -->
+<section class="dates-section" id="datas">
+  <div class="section-inner">
+    <div class="s-eyebrow">// Programação</div>
+    <div class="s-title">Escolha seu Dia</div>
+    <div class="s-sub">7 dias de festival. Cada dia com atrações exclusivas no Palco Mundo, Sunset e muito mais.</div>
+
+    <div class="dates-grid">
+
+      <div class="date-row">
+        <div class="date-num">04</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Sexta-feira</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 04 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">05</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Sábado</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 05 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">06</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Domingo</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 06 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">07</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026 — Feriado Nacional</div>
+          <div class="date-weekday">Segunda-feira</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 07 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">11</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Sexta-feira</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 11 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">12</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Sábado</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 12 Set')">Comprar →</button>
+      </div>
+
+      <div class="date-row">
+        <div class="date-num">13</div>
+        <div class="date-info">
+          <div class="date-month">Setembro 2026</div>
+          <div class="date-weekday">Domingo</div>
+          <div class="date-local">📍 Parque Olímpico — Rio de Janeiro</div>
+        </div>
+        <button class="date-btn" onclick="coOpen('vip','Rio de Janeiro — 13 Set')">Comprar →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price-section" id="ingressos">
+  <div class="section-inner">
+    <div class="s-eyebrow">// Ingressos</div>
+    <div class="s-title">Escolha seu Ingresso</div>
+    <div class="s-sub">Preços por dia. Cada ingresso dá acesso a todos os palcos do festival no dia selecionado.</div>
+
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="price-type">// Meia-Entrada</div>
+        <div class="price-val">R$435</div>
+        <div class="price-period">por dia · meia-entrada</div>
+        <ul class="price-features">
+          <li>Acesso a todos os palcos</li>
+          <li>Válido para estudantes, idosos e PcD</li>
+          <li>Apresentação de documento obrigatória</li>
+          <li>Ingresso nominal e intransferível</li>
+        </ul>
+        <button class="btn-buy" onclick="coOpen('general',null)">Comprar Meia-Entrada</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-type">// Inteira</div>
+        <div class="price-val">R$870</div>
+        <div class="price-period">por dia · entrada inteira</div>
+        <ul class="price-features">
+          <li>Acesso a todos os palcos</li>
+          <li>Sem restrição de público</li>
+          <li>Ingresso nominal e intransferível</li>
+          <li>Confirmação imediata por email</li>
+        </ul>
+        <button class="btn-buy" onclick="coOpen('vip',null)">Comprar Inteira</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ROCK<span>IN</span>RIO</div>
+  <div class="footer-info">
+    Rock in Rio 2026 — Cidade do Rock, Parque Olímpico, Rio de Janeiro<br>
+    4, 5, 6, 7, 11, 12 e 13 de Setembro de 2026<br><br>
+    Ingresso nominal e intransferível. Sujeito à disponibilidade.<br>
+    © 2026 Rock in Rio. Todos os direitos reservados.
+  </div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky" id="stickyBar">
+  <div class="sticky-info">
+    <div class="sticky-name">Rock in Rio 2026</div>
+    <div class="sticky-date">📍 Parque Olímpico · Set 4–7 e 11–13 · A partir de R$435</div>
+  </div>
+  <button class="sticky-cta" onclick="coOpen('vip',null)">🎟️ Garantir Ingresso</button>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('stickyBar').classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHECKOUT MODAL — Rock in Rio 2026
+     ═══════════════════════════════════════════════════════════════ -->
+<style>
+.co-overlay{position:fixed;inset:0;z-index:2000;background:rgba(8,8,8,.93);display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px);opacity:0;transition:opacity .3s}
+.co-overlay.co-visible{opacity:1}
+.co-modal{background:#111;border:1px solid rgba(227,0,43,.3);width:100%;max-width:500px;max-height:92vh;overflow-y:auto;position:relative;transform:translateY(24px);transition:transform .35s;scrollbar-width:thin;scrollbar-color:#E3002B #111}
+.co-overlay.co-visible .co-modal{transform:translateY(0)}
+.co-head{display:flex;justify-content:space-between;align-items:flex-start;padding:1.4rem 1.6rem;border-bottom:1px solid rgba(242,237,228,.08)}
+.co-head-tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#E3002B;margin-bottom:.3rem}
+.co-head-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em}
+.co-x{background:none;border:none;color:rgba(242,237,228,.4);font-size:1.2rem;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .2s;margin-top:.1rem}
+.co-x:hover{color:#E3002B}
+.co-steps{display:flex;align-items:center;padding:1rem 1.6rem;gap:0;border-bottom:1px solid rgba(242,237,228,.08)}
+.co-sd{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;background:rgba(242,237,228,.07);color:rgba(242,237,228,.3);flex-shrink:0;transition:all .3s}
+.co-sd.active{background:#E3002B;color:#fff}
+.co-sd.done{background:rgba(227,0,43,.25);color:#E3002B}
+.co-sl{flex:1;height:1px;background:rgba(242,237,228,.1);transition:background .3s}
+.co-sl.done{background:rgba(227,0,43,.4)}
+.co-step{display:none;padding:1.6rem}
+.co-step.active{display:block}
+.co-eyebrow{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#E3002B;margin-bottom:.4rem}
+.co-h{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:1.4rem}
+.co-types{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.3rem}
+.co-type{padding:1rem;border:1px solid rgba(242,237,228,.1);background:transparent;cursor:pointer;text-align:left;transition:all .2s;color:#f2ede4}
+.co-type:hover{border-color:rgba(227,0,43,.4)}
+.co-type.selected{border-color:#E3002B;background:rgba(227,0,43,.07)}
+.co-type-name{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#f2ede4}
+.co-type-price{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#E3002B;margin-top:.1rem}
+.co-qty{display:flex;align-items:center;gap:.8rem;border:1px solid rgba(242,237,228,.1);padding:.5rem 1rem;width:fit-content;margin-top:.4rem}
+.co-qty-btn{background:none;border:none;color:#E3002B;font-size:1.5rem;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:opacity .2s}
+.co-qty-btn:hover{opacity:.7}
+#coQtyVal{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#f2ede4;min-width:2rem;text-align:center}
+.co-subtotal{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(242,237,228,.08);border-bottom:1px solid rgba(242,237,228,.08);padding:.9rem 0;margin:1.2rem 0}
+.co-subtotal span:first-child{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,228,.4)}
+.co-subtotal-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#E3002B}
+.co-field-group{margin-bottom:.9rem}
+.co-field-label{display:block;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,228,.45);margin-bottom:.4rem}
+.co-input{width:100%;background:rgba(242,237,228,.04);border:1px solid rgba(242,237,228,.1);color:#f2ede4;font-family:'Space Mono',monospace;font-size:.88rem;padding:.8rem 1rem;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0;box-sizing:border-box}
+.co-input:focus{border-color:#E3002B}
+.co-input::placeholder{color:rgba(242,237,228,.18)}
+.co-input.co-invalid{border-color:#e02020}
+select.co-input option{background:#111;color:#f2ede4}
+.co-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.co-err{font-family:'Space Mono',monospace;font-size:.6rem;color:#e02020;margin-top:.3rem;display:none}
+.co-methods{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.2rem}
+.co-method{padding:.75rem;border:1px solid rgba(242,237,228,.1);background:transparent;cursor:pointer;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,237,228,.45);display:flex;align-items:center;justify-content:center;gap:.4rem;transition:all .2s}
+.co-method:hover{border-color:rgba(227,0,43,.4);color:#E3002B}
+.co-method.selected{border-color:#E3002B;background:rgba(227,0,43,.07);color:#E3002B}
+.co-card-visual{background:linear-gradient(135deg,#1c1c1c,#252525);border:1px solid rgba(227,0,43,.18);padding:1.4rem;margin-bottom:1.2rem;position:relative}
+.co-card-chip{width:30px;height:22px;background:linear-gradient(135deg,#E3002B,#ff4466);border-radius:3px;margin-bottom:.9rem}
+.co-card-number{font-family:'Space Mono',monospace;font-size:.95rem;letter-spacing:.18em;color:rgba(242,237,228,.65);margin-bottom:.9rem}
+.co-card-bottom{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(242,237,228,.35)}
+.co-pix-info{background:rgba(227,0,43,.06);border:1px solid rgba(227,0,43,.15);padding:1.2rem;display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem}
+.co-pix-icon{font-size:1.8rem;flex-shrink:0}
+.co-order-summary{border-top:1px solid rgba(242,237,228,.08);padding-top:.9rem;margin-bottom:1rem}
+.co-order-row{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(242,237,228,.45);padding:.3rem 0;letter-spacing:.06em}
+.co-order-bold{color:#E3002B;font-weight:700;font-size:.85rem;border-top:1px solid rgba(242,237,228,.08);margin-top:.4rem;padding-top:.6rem}
+.co-pay-err{background:rgba(224,32,32,.1);border:1px solid rgba(224,32,32,.3);color:#e02020;padding:.8rem 1rem;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.06em;display:none;margin-bottom:.8rem}
+.co-btn{width:100%;padding:.95rem;background:#E3002B;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;margin-top:.8rem}
+.co-btn:hover{background:#ff1a3e}
+.co-btn:disabled{background:rgba(227,0,43,.3);cursor:not-allowed}
+.co-back{width:100%;padding:.7rem;background:transparent;color:rgba(242,237,228,.35);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;margin-top:.4rem;transition:color .2s}
+.co-back:hover{color:#f2ede4}
+.co-loading-inner{text-align:center;padding:3rem 1.5rem}
+.co-spinner{width:46px;height:46px;border:3px solid rgba(227,0,43,.15);border-top-color:#E3002B;border-radius:50%;animation:cospin .8s linear infinite;margin:0 auto 1.4rem}
+@keyframes cospin{to{transform:rotate(360deg)}}
+.co-loading-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:.5rem}
+.co-loading-sub{font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(242,237,228,.4);letter-spacing:.08em}
+.co-success-inner{text-align:center;padding:2.5rem 1.5rem}
+.co-success-icon{font-size:4rem;margin-bottom:.8rem}
+.co-success-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#E3002B;letter-spacing:.04em;margin-bottom:.8rem}
+.co-success-text{font-size:.88rem;color:rgba(242,237,228,.6);line-height:1.8;margin-bottom:1.4rem}
+.co-pix-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,228,.4);margin-bottom:.8rem}
+.co-pix-qr{background:#fff;padding:1rem;display:flex;justify-content:center;margin-bottom:.8rem}
+.co-pix-copy{display:flex;gap:.5rem;align-items:center}
+.co-pix-code{flex:1;background:rgba(242,237,228,.04);border:1px solid rgba(242,237,228,.1);padding:.6rem .8rem;font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(242,237,228,.5);word-break:break-all;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.co-btn-copy{background:#E3002B;color:#fff;border:none;padding:.5rem .9rem;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.co-btn-copy:hover{background:#ff1a3e}
+.co-trust-bar{display:flex;justify-content:center;gap:1.5rem;padding:.9rem 1.6rem;border-top:1px solid rgba(242,237,228,.06);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,228,.25)}
+@media(max-width:520px){.co-modal{max-height:95vh}.co-types{grid-template-columns:1fr}.co-methods{grid-template-columns:1fr}.co-row{grid-template-columns:1fr}}
+</style>
+
+<div id="coOverlay" class="co-overlay" onclick="if(event.target===this)coClose()">
+  <div class="co-modal">
+    <div class="co-head">
+      <div>
+        <div class="co-head-tag">// Rock in Rio 2026</div>
+        <div class="co-head-title">Finalize sua compra</div>
+      </div>
+      <button class="co-x" onclick="coClose()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="co-steps">
+      <span id="sd1" class="co-sd active">1</span>
+      <div id="sl1" class="co-sl"></div>
+      <span id="sd2" class="co-sd">2</span>
+      <div id="sl2" class="co-sl"></div>
+      <span id="sd3" class="co-sd">3</span>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="cs1" class="co-step active">
+      <div class="co-eyebrow">// Selecione</div>
+      <div class="co-h">Ingresso &amp; Data</div>
+      <div class="co-field-label">Tipo de ingresso</div>
+      <div class="co-types">
+        <button class="co-type selected" data-type="vip" onclick="coSelectType(this)">
+          <span class="co-type-name">Inteira</span>
+          <span class="co-type-price">R$870</span>
+        </button>
+        <button class="co-type" data-type="general" onclick="coSelectType(this)">
+          <span class="co-type-name">Meia-Entrada</span>
+          <span class="co-type-price">R$435</span>
+        </button>
+      </div>
+      <div class="co-field-label" style="margin-top:1.2rem">Data do show</div>
+      <select id="coDate" class="co-input">
+        <option value="Rio de Janeiro — 04 Set">Rio de Janeiro — Sex, 04 Set 2026</option>
+        <option value="Rio de Janeiro — 05 Set">Rio de Janeiro — Sáb, 05 Set 2026</option>
+        <option value="Rio de Janeiro — 06 Set">Rio de Janeiro — Dom, 06 Set 2026</option>
+        <option value="Rio de Janeiro — 07 Set">Rio de Janeiro — Seg, 07 Set 2026 (Feriado)</option>
+        <option value="Rio de Janeiro — 11 Set">Rio de Janeiro — Sex, 11 Set 2026</option>
+        <option value="Rio de Janeiro — 12 Set">Rio de Janeiro — Sáb, 12 Set 2026</option>
+        <option value="Rio de Janeiro — 13 Set">Rio de Janeiro — Dom, 13 Set 2026</option>
+      </select>
+      <div class="co-field-label" style="margin-top:1.2rem">Quantidade</div>
+      <div class="co-qty">
+        <button class="co-qty-btn" onclick="coQty(-1)">−</button>
+        <span id="coQtyVal">1</span>
+        <button class="co-qty-btn" onclick="coQty(1)">+</button>
+      </div>
+      <div class="co-subtotal">
+        <span>Subtotal</span>
+        <span id="coSubtotal" class="co-subtotal-val">R$870</span>
+      </div>
+      <button class="co-btn" onclick="coGoStep2()">Continuar →</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="cs2" class="co-step">
+      <div class="co-eyebrow">// Seus dados</div>
+      <div class="co-h">Informações Pessoais</div>
+      <div class="co-field-group">
+        <label class="co-field-label">Nome completo</label>
+        <input id="coName" class="co-input" type="text" placeholder="João Silva" autocomplete="name">
+        <div id="coNameErr" class="co-err"></div>
+      </div>
+      <div class="co-field-group">
+        <label class="co-field-label">Email</label>
+        <input id="coEmail" class="co-input" type="email" placeholder="joao@email.com" autocomplete="email">
+        <div id="coEmailErr" class="co-err"></div>
+      </div>
+      <div class="co-row">
+        <div class="co-field-group">
+          <label class="co-field-label">Telefone / WhatsApp</label>
+          <input id="coPhone" class="co-input" type="tel" placeholder="+55 21 99999-9999" autocomplete="tel">
+          <div id="coPhoneErr" class="co-err"></div>
+        </div>
+        <div class="co-field-group">
+          <label class="co-field-label">CPF</label>
+          <input id="coDoc" class="co-input" type="text" placeholder="000.000.000-00">
+          <div id="coDocErr" class="co-err"></div>
+        </div>
+      </div>
+      <button class="co-btn" onclick="coValidateStep2()">Continuar →</button>
+      <button class="co-back" onclick="coStep(1)">← Voltar</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="cs3" class="co-step">
+      <div class="co-eyebrow">// Pagamento</div>
+      <div class="co-h">Forma de Pagamento</div>
+      <div class="co-methods">
+        <button class="co-method selected" data-m="card" onclick="coSelectMethod(this)">💳 Cartão</button>
+        <button class="co-method" data-m="pix" onclick="coSelectMethod(this)">⚡ Pix</button>
+      </div>
+      <div id="coCardForm">
+        <div class="co-card-visual">
+          <div class="co-card-chip"></div>
+          <div id="coCardNumDisplay" class="co-card-number">•••• •••• •••• ••••</div>
+          <div class="co-card-bottom">
+            <span id="coCardHolderDisplay">NOME NO CARTÃO</span>
+            <span id="coCardExpDisplay">MM/AA</span>
+          </div>
+        </div>
+        <div class="co-field-group">
+          <label class="co-field-label">Número do cartão</label>
+          <input id="coCardNum" class="co-input" type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number">
+          <div id="coCardNumErr" class="co-err"></div>
+        </div>
+        <div class="co-row">
+          <div class="co-field-group">
+            <label class="co-field-label">Validade</label>
+            <input id="coCardExp" class="co-input" type="text" inputmode="numeric" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+            <div id="coCardExpErr" class="co-err"></div>
+          </div>
+          <div class="co-field-group">
+            <label class="co-field-label">CVV</label>
+            <input id="coCardCvv" class="co-input" type="text" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="cc-csc">
+            <div id="coCardCvvErr" class="co-err"></div>
+          </div>
+        </div>
+        <div class="co-field-group">
+          <label class="co-field-label">Nome no cartão</label>
+          <input id="coCardHolder" class="co-input" type="text" placeholder="JOAO SILVA" autocomplete="cc-name">
+          <div id="coCardHolderErr" class="co-err"></div>
+        </div>
+      </div>
+      <div id="coPixForm" style="display:none">
+        <div class="co-pix-info">
+          <div class="co-pix-icon">⚡</div>
+          <div>
+            <div style="font-weight:700;margin-bottom:.3rem">Pagamento via Pix</div>
+            <div style="font-size:.82rem;color:rgba(242,237,228,.6)">Após confirmar, você receberá o QR Code e o código Pix. O ingresso é liberado imediatamente após confirmação do pagamento.</div>
+          </div>
+        </div>
+      </div>
+      <div class="co-order-summary" id="coOrderSummary"></div>
+      <div id="coPayErr" class="co-pay-err"></div>
+      <button id="coPayBtn" class="co-btn" onclick="coSubmitPayment()">🔒 Pagar com Segurança</button>
+      <button class="co-back" onclick="coStep(2)">← Voltar</button>
+    </div>
+
+    <!-- LOADING -->
+    <div id="csLoading" class="co-step">
+      <div class="co-loading-inner">
+        <div class="co-spinner"></div>
+        <div class="co-loading-title">Processando...</div>
+        <div class="co-loading-sub">Não feche esta janela. Isso pode levar alguns segundos.</div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="csSuccess" class="co-step">
+      <div class="co-success-inner">
+        <div class="co-success-icon">🎸</div>
+        <div class="co-success-title">Ingresso Confirmado!</div>
+        <div class="co-success-text">
+          Seu ingresso foi reservado com sucesso!<br>
+          Confirmação enviada para <strong id="coSuccessEmail"></strong>
+        </div>
+        <!-- Código único do ingresso -->
+        <div id="coOrderCodeArea" style="display:none;background:rgba(227,0,43,.06);border:1px solid rgba(227,0,43,.25);padding:1rem;margin:1rem 0;text-align:center">
+          <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,237,228,.4);margin-bottom:.4rem">// Código do ingresso</div>
+          <div id="coOrderCode" style="font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;color:#E3002B;letter-spacing:.12em"></div>
+          <button onclick="copyOrderCode()" style="margin-top:.5rem;background:transparent;border:1px solid rgba(227,0,43,.3);color:rgba(242,237,228,.5);font-family:'Space Mono',monospace;font-size:.6rem;padding:.3rem .8rem;cursor:pointer">Copiar código</button>
+        </div>
+        <!-- Pix QR -->
+        <div id="coPixQrArea" style="display:none;margin:1rem 0">
+          <div class="co-pix-label">Escaneie o QR Code ou copie o código Pix:</div>
+          <div class="co-pix-qr"><img id="coPixQrImg" src="" alt="QR Code Pix" style="width:180px;height:180px;border-radius:8px"></div>
+          <div class="co-pix-copy">
+            <span id="coPixCopyCode" class="co-pix-code"></span>
+            <button class="co-btn-copy" onclick="copyPixCode()">Copiar</button>
+          </div>
+        </div>
+        <a href="/minha-conta.html" class="co-btn" style="text-decoration:none;margin-top:.5rem">Ver meu ingresso →</a>
+        <button class="co-back" onclick="coClose()">Fechar</button>
+      </div>
+    </div>
+
+    <div class="co-trust-bar">
+      <span>🔒 SSL</span><span>✅ 100% Seguro</span><span>🛡️ Dados Protegidos</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const CO = {
+  step: 1,
+  type: 'vip',
+  qty:  1,
+  date: 'Rio de Janeiro — 04 Set',
+  currency: 'R$',
+  prices: { vip: 870, general: 435 },
+  labels: { vip: 'Inteira', general: 'Meia-Entrada' },
+  customer: {},
+  payment: { method: 'card' },
+};
+
+function coOpen(type, date) {
+  if (type) CO.type = type;
+  CO.qty = 1;
+  if (date) CO.date = date;
+  document.querySelectorAll('.co-type').forEach(b => b.classList.toggle('selected', b.dataset.type === CO.type));
+  if (date) {
+    const sel = document.getElementById('coDate');
+    for (const opt of sel.options) { if (opt.value === date) { sel.value = date; break; } }
+  }
+  coUpdateSubtotal();
+  coStep(1);
+  const ov = document.getElementById('coOverlay');
+  ov.style.display = 'flex';
+  requestAnimationFrame(() => ov.classList.add('co-visible'));
+  document.body.style.overflow = 'hidden';
+}
+
+function coClose() {
+  const ov = document.getElementById('coOverlay');
+  ov.classList.remove('co-visible');
+  setTimeout(() => { ov.style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+
+function coStep(n) {
+  CO.step = n;
+  ['cs1','cs2','cs3','csLoading','csSuccess'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+  const ids = { 1:'cs1', 2:'cs2', 3:'cs3', Loading:'csLoading', Success:'csSuccess' };
+  document.getElementById(ids[n])?.classList.add('active');
+  [1,2,3].forEach(i => {
+    document.getElementById('sd'+i).className = 'co-sd' + (i < n ? ' done' : i === n ? ' active' : '');
+    const l = document.getElementById('sl'+i);
+    if (l) l.className = 'co-sl' + (i < n ? ' done' : '');
+  });
+  if (n === 3) coRenderOrderSummary();
+}
+
+function coGoStep2() { CO.date = document.getElementById('coDate').value; coStep(2); }
+
+function coSelectType(btn) {
+  document.querySelectorAll('.co-type').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  CO.type = btn.dataset.type;
+  coUpdateSubtotal();
+}
+
+function coQty(d) {
+  CO.qty = Math.max(1, Math.min(10, CO.qty + d));
+  document.getElementById('coQtyVal').textContent = CO.qty;
+  coUpdateSubtotal();
+}
+
+function coUpdateSubtotal() {
+  document.getElementById('coSubtotal').textContent = `${CO.currency}${CO.prices[CO.type] * CO.qty}`;
+}
+
+function coSelectMethod(btn) {
+  document.querySelectorAll('.co-method').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  CO.payment.method = btn.dataset.m;
+  document.getElementById('coCardForm').style.display = btn.dataset.m === 'card' ? 'block' : 'none';
+  document.getElementById('coPixForm').style.display  = btn.dataset.m === 'pix'  ? 'block' : 'none';
+}
+
+function coSetErr(id, msg) {
+  const err = document.getElementById(id+'Err'), inp = document.getElementById(id);
+  if (err) { err.textContent = msg; err.style.display = msg ? 'block' : 'none'; }
+  if (inp)  inp.classList.toggle('co-invalid', !!msg);
+}
+
+function coValidateStep2() {
+  const name=document.getElementById('coName').value.trim();
+  const email=document.getElementById('coEmail').value.trim();
+  const phone=document.getElementById('coPhone').value.trim();
+  const doc=document.getElementById('coDoc').value.trim();
+  let ok=true;
+  if(name.length<3)                             {coSetErr('coName','Nome inválido');     ok=false;} else coSetErr('coName','');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {coSetErr('coEmail','Email inválido');   ok=false;} else coSetErr('coEmail','');
+  if(phone.replace(/\D/g,'').length<8)           {coSetErr('coPhone','Telefone inválido');ok=false;} else coSetErr('coPhone','');
+  if(doc.replace(/\D/g,'').length<8)             {coSetErr('coDoc','Documento inválido');ok=false;} else coSetErr('coDoc','');
+  if(ok){
+    CO.customer={name,email,phone,document:doc};
+    // Captura lead silenciosamente
+    fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      name,email,phone,document:doc,
+      ticketType:CO.type,ticketLabel:CO.labels[CO.type],
+      showDate:CO.date,quantity:CO.qty,
+    })}).catch(()=>{});
+    coStep(3);
+  }
+}
+
+function coRenderOrderSummary() {
+  const total = CO.prices[CO.type] * CO.qty;
+  document.getElementById('coOrderSummary').innerHTML =
+    `<div class="co-order-row"><span>${CO.labels[CO.type]} × ${CO.qty} — ${CO.date}</span><span>${CO.currency}${total}</span></div>
+     <div class="co-order-row co-order-bold"><span>Total</span><span>${CO.currency}${total}</span></div>`;
+}
+
+function luhn(n){let s=0,alt=false;for(let i=n.length-1;i>=0;i--){let d=+n[i];if(alt){d*=2;if(d>9)d-=9;}s+=d;alt=!alt;}return s%10===0&&n.length>=13;}
+
+async function coSubmitPayment() {
+  if (CO.payment.method === 'card') {
+    const num=document.getElementById('coCardNum').value.replace(/\s/g,'');
+    const exp=document.getElementById('coCardExp').value;
+    const cvv=document.getElementById('coCardCvv').value;
+    const holder=document.getElementById('coCardHolder').value.trim();
+    let ok=true;
+    if(!luhn(num))                  {coSetErr('coCardNum','Número inválido');  ok=false;} else coSetErr('coCardNum','');
+    if(!/^\d{2}\/\d{2}$/.test(exp)) {coSetErr('coCardExp','Data inválida');    ok=false;} else coSetErr('coCardExp','');
+    if(cvv.length<3)                {coSetErr('coCardCvv','CVV inválido');     ok=false;} else coSetErr('coCardCvv','');
+    if(holder.length<3)             {coSetErr('coCardHolder','Nome inválido'); ok=false;} else coSetErr('coCardHolder','');
+    if(!ok) return;
+    const [mm,yy]=exp.split('/');
+    if(new Date('20'+yy,mm-1)<new Date()){coSetErr('coCardExp','Cartão expirado');return;}
+    CO.payment.card={number:num,expiry_month:mm,expiry_year:'20'+yy,cvv,holder_name:holder};
+  }
+  document.getElementById('coPayErr').style.display='none';
+  document.getElementById('coPayBtn').disabled=true;
+  coStep('Loading');
+  try {
+    const res = await fetch('/api/payment/create',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        amount: CO.prices[CO.type]*CO.qty*100,
+        currency:'BRL',
+        description:`Rock in Rio 2026 — ${CO.labels[CO.type]} ${CO.date} × ${CO.qty}`,
+        ticket:{type:CO.type,quantity:CO.qty,show_date:CO.date},
+        customer:CO.customer,
+        payment:{method:CO.payment.method,...(CO.payment.card?{card:CO.payment.card}:{})},
+      }),
+    });
+    const data=await res.json();
+    if(!res.ok||data.error) throw new Error(data.error||data.message||'Erro no pagamento');
+    coStep('Success');
+    document.getElementById('coSuccessEmail').textContent=CO.customer.email;
+    // Código único
+    if(data.orderCode){
+      document.getElementById('coOrderCodeArea').style.display='block';
+      document.getElementById('coOrderCode').textContent=data.orderCode;
+      // Salva no localStorage para acesso fácil
+      const saved=JSON.parse(localStorage.getItem('rir_my_codes')||'[]');
+      saved.unshift({code:data.orderCode,email:CO.customer.email,date:CO.date,ts:Date.now()});
+      localStorage.setItem('rir_my_codes',JSON.stringify(saved.slice(0,20)));
+    }
+    if(data.pix&&data.pix.copy_paste){
+      document.getElementById('coPixQrArea').style.display='block';
+      const pixStr=data.pix.copy_paste;
+      document.getElementById('coPixQrImg').src=`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixStr)}&size=180x180&margin=8`;
+      document.getElementById('coPixCopyCode').textContent=pixStr;
+    }
+  } catch(err){
+    coStep(3);
+    const e=document.getElementById('coPayErr');
+    e.textContent=err.message||'Erro ao processar. Tente novamente.';
+    e.style.display='block';
+    document.getElementById('coPayBtn').disabled=false;
+  }
+}
+
+function copyPixCode(){
+  navigator.clipboard.writeText(document.getElementById('coPixCopyCode').textContent).then(()=>alert('Código Pix copiado!'));
+}
+function copyOrderCode(){
+  const code=document.getElementById('coOrderCode').textContent;
+  navigator.clipboard.writeText(code).then(()=>alert(`Código ${code} copiado!`));
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('coCardNum').addEventListener('input',function(){
+    const v=this.value.replace(/\D/g,'').substring(0,16);
+    this.value=v.replace(/(.{4})/g,'$1 ').trim();
+    document.getElementById('coCardNumDisplay').textContent=v.padEnd(16,'•').replace(/(.{4})/g,'$1 ').trim();
+  });
+  document.getElementById('coCardExp').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').substring(0,4);
+    if(v.length>=2) v=v.substring(0,2)+'/'+v.substring(2);
+    this.value=v;
+    document.getElementById('coCardExpDisplay').textContent=v||'MM/AA';
+  });
+  document.getElementById('coCardCvv').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').substring(0,4);});
+  document.getElementById('coCardHolder').addEventListener('input',function(){
+    this.value=this.value.toUpperCase();
+    document.getElementById('coCardHolderDisplay').textContent=this.value||'NOME NO CARTÃO';
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')coClose();});
+});
+</script>
+</body>
+</html>
