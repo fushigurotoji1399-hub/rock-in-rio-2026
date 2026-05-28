@@ -11,7 +11,7 @@ config({ path: join(__dir, '.env') });
 // ─── DATABASE ─────────────────────────────────────────────────────────────────
 // Em produção (Railway), usa /data montado como volume persistente.
 // Localmente usa ./data/
-const DATA_DIR = process.env.DATA_DIR || join(__dir, 'data');
+const DATA_DIR = process.env.DATA_DIR || (process.env.VERCEL ? '/tmp/rir-data' : join(__dir, 'data'));
 const DB_FILE  = join(DATA_DIR, 'db.json');
 if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 
